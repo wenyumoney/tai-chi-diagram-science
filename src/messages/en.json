@@ -1,1 +1,37 @@
-{}
+{
+  "nav": {
+    "home": "Home",
+    "panorama": "Panorama Map",
+    "language": "中文"
+  },
+  "home": {
+    "siteTitle": "Taiji Diagram × Modern Science",
+    "siteSubtitle": "Exploring Yin-Yang Principles at the Frontiers of Science",
+    "cardGallery": "Core Domains",
+    "explorePanorama": "Explore Panorama Map →"
+  },
+  "domain": {
+    "backToHome": "Back to Home",
+    "overview": "Overview",
+    "taijiConnection": "Taiji Connection",
+    "keyExamples": "Key Examples",
+    "visualComparison": "Visual Comparison",
+    "references": "References",
+    "previousDomain": "← Previous Domain",
+    "nextDomain": "Next Domain →",
+    "viewPanorama": "View Panorama Map"
+  },
+  "panorama": {
+    "title": "Taiji Science Universe Map",
+    "subtitle": "15+ domains, cross-disciplinary manifestations of Yin-Yang principles",
+    "backToHome": "Back to Home",
+    "coreDomains": "Core Domains",
+    "extendedDomains": "Extended Domains",
+    "tapToExplore": "Tap a node to explore"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The domain you're exploring has not yet been discovered.",
+    "backToHome": "Back to Home"
+  }
+}

@@ -1,1 +1,37 @@
-{}
+{
+  "nav": {
+    "home": "首页",
+    "panorama": "全景地图",
+    "language": "English"
+  },
+  "home": {
+    "siteTitle": "太极图 × 现代科学",
+    "siteSubtitle": "探索阴阳原理在科学前沿的显现",
+    "cardGallery": "核心领域",
+    "explorePanorama": "探索全景地图 →"
+  },
+  "domain": {
+    "backToHome": "返回首页",
+    "overview": "概述",
+    "taijiConnection": "太极关联",
+    "keyExamples": "关键实例",
+    "visualComparison": "视觉对比",
+    "references": "参考资料",
+    "previousDomain": "← 上一领域",
+    "nextDomain": "下一领域 →",
+    "viewPanorama": "查看全景地图"
+  },
+  "panorama": {
+    "title": "太极图科学宇宙地图",
+    "subtitle": "15+领域，太极图原理的跨学科显现",
+    "backToHome": "返回首页",
+    "coreDomains": "核心深耕",
+    "extendedDomains": "扩展领域",
+    "tapToExplore": "点击节点探索"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "你探索的领域尚未被发现。",
+    "backToHome": "返回首页"
+  }
+}
