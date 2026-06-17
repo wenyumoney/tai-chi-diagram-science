@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeAll } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
 import TaijiDiagram from "../TaijiDiagram";
 
@@ -12,15 +12,6 @@ vi.mock("gsap", () => ({
     }),
   },
 }));
-
-// Mock ResizeObserver
-beforeAll(() => {
-  globalThis.ResizeObserver = class {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
-  };
-});
 
 const mockDomains = [
   { slug: "taiji-math", title: { zh: "数学", en: "Math" }, color: "#d4a853" },
