@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface DomainInfo {
   slug: string;
@@ -14,7 +14,6 @@ interface TaijiDiagramProps {
   locale: string;
 }
 
-// SVG icons for each domain — clean geometric primitives, no emojis
 function DomainIcon({ slug }: { slug: string }) {
   switch (slug) {
     case "taiji-math":
@@ -85,25 +84,40 @@ export default function TaijiDiagram({
   locale,
 }: TaijiDiagramProps) {
   const svgRef = useRef<SVGSVGElement>(null);
+  const cycleStartRef = useRef<number>(0);
+  const [rpm, setRpm] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let cleanup: (() => void) | undefined;
+    const DURATION = 300; // 5 minutes
+    const MAX_RPM = 5000;
+
+    cycleStartRef.current = Date.now();
 
     import("gsap").then((gsapModule) => {
       const gsap = gsapModule.default;
       if (!svgRef.current) return;
 
       const ctx = gsap.context(() => {
-        // 0 → 2000 RPM over 3 minutes (180s), then restart
-        // Linear acceleration: θ = k·t², at t=180s, θ = 1,080,000°
-        // power1.in (quadratic) = linearly increasing speed
-        gsap.to(svgRef.current, {
-          rotation: 1080000,
-          duration: 180,
+        const tween = gsap.to(svgRef.current, {
+          rotation: 4_500_000, // total degrees for 0→5000 RPM over 300s
+          duration: DURATION,
           repeat: -1,
           ease: "power1.in",
+          onUpdate: () => {
+            const now = Date.now();
+            const elapsed = (now - cycleStartRef.current) / 1000;
+            const t = Math.min(elapsed, DURATION);
+            // Linear acceleration: RPM ∝ elapsed time
+            const currentRpm = Math.round((t / DURATION) * MAX_RPM);
+            setRpm(currentRpm);
+          },
+          onRepeat: () => {
+            cycleStartRef.current = Date.now();
+            setRpm(0);
+          },
         });
       });
 
@@ -118,7 +132,7 @@ export default function TaijiDiagram({
   return (
     <div className="relative flex items-center justify-center w-full py-12 select-none">
       <div className="relative w-[min(80vw,500px)] h-[min(80vw,500px)]">
-        {/* Taiji SVG — now with refined visual */}
+        {/* Taiji SVG */}
         <div className="absolute inset-0 flex items-center justify-center">
           <svg
             ref={svgRef}
@@ -143,6 +157,27 @@ export default function TaijiDiagram({
             {/* Yang dot */}
             <circle cx="100" cy="50" r="8" fill="#18181b" />
           </svg>
+
+          {/* RPM display — centered over the Taiji, uses Creepster font */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="text-center select-none">
+              <span
+                className="block text-5xl md:text-7xl leading-none text-red-700/80"
+                style={{
+                  fontFamily: "var(--font-creepster), cursive",
+                  textShadow: "0 0 30px rgba(220,38,38,0.5), 0 0 60px rgba(220,38,38,0.25), 0 2px 8px rgba(0,0,0,0.8)",
+                }}
+              >
+                {rpm.toLocaleString()}
+              </span>
+              <span
+                className="block text-xs md:text-sm tracking-[0.4em] text-red-800/60 mt-1"
+                style={{ fontFamily: "var(--font-creepster), cursive" }}
+              >
+                RPM
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Orbit domain icons */}
@@ -163,7 +198,6 @@ export default function TaijiDiagram({
               }}
               aria-label={domain.title[locale as "zh" | "en"]}
             >
-              {/* Outer shell — Double-Bezel */}
               <div
                 className="w-10 h-10 md:w-12 md:h-12 rounded-2xl border flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 style={{
@@ -172,7 +206,6 @@ export default function TaijiDiagram({
                   boxShadow: `0 0 20px ${domain.color}15, inset 0 1px 0 ${domain.color}20`,
                 }}
               >
-                {/* Inner icon */}
                 <div
                   className="w-5 h-5 md:w-6 md:h-6 transition-colors duration-500"
                   style={{ color: domain.color }}
@@ -180,7 +213,6 @@ export default function TaijiDiagram({
                   <DomainIcon slug={domain.slug} />
                 </div>
               </div>
-              {/* Tooltip — refined pill */}
               <div className="absolute left-1/2 -translate-x-1/2 mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] whitespace-nowrap bg-zinc-900/90 backdrop-blur-md text-xs px-3 py-1.5 rounded-full border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] pointer-events-none">
                 {domain.title[locale as "zh" | "en"]}
               </div>
