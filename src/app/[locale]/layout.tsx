@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import ParticleField from "@/components/ParticleField";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -31,8 +32,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className="bg-[#09090b] text-zinc-200 font-sans">
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <ParticleField />
           <NavBar />
-          <main className="pt-14">{children}</main>
+          <main className="relative z-10 pt-14">{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>
