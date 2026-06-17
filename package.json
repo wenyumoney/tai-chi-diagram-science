@@ -9,7 +9,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check-data": "tsx src/lib/check-data.ts"
+    "check-data": "tsx src/lib/check-data-cli.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.1",
