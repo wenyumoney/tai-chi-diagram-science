@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Geist', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', 'Cascadia Code', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile Taiji spin keyframe */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
