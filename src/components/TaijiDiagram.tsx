@@ -130,7 +130,27 @@ export default function TaijiDiagram({
   }, []);
 
   return (
-    <div className="relative flex items-center justify-center w-full py-12 select-none">
+    <div className="relative flex flex-col items-center justify-center w-full py-8 select-none">
+      {/* RPM Display — above the Taiji, gold Song typeface */}
+      <div className="text-center mb-2 pointer-events-none">
+        <span
+          className="block text-4xl md:text-6xl leading-none font-black text-[#d4a853]"
+          style={{
+            fontFamily: "var(--font-song), serif",
+            textShadow: "0 0 40px rgba(212,168,83,0.35), 0 2px 4px rgba(0,0,0,0.6)",
+            letterSpacing: "0.05em",
+          }}
+        >
+          {rpm.toLocaleString()}
+        </span>
+        <span
+          className="block text-[10px] md:text-xs tracking-[0.5em] text-[#d4a853]/50 mt-1"
+          style={{ fontFamily: "var(--font-song), serif" }}
+        >
+          RPM
+        </span>
+      </div>
+
       <div className="relative w-[min(80vw,500px)] h-[min(80vw,500px)]">
         {/* Taiji SVG */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -158,26 +178,6 @@ export default function TaijiDiagram({
             <circle cx="100" cy="50" r="8" fill="#18181b" />
           </svg>
 
-          {/* RPM display — centered over the Taiji, uses Creepster font */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center select-none">
-              <span
-                className="block text-5xl md:text-7xl leading-none text-red-700/80"
-                style={{
-                  fontFamily: "var(--font-creepster), cursive",
-                  textShadow: "0 0 30px rgba(220,38,38,0.5), 0 0 60px rgba(220,38,38,0.25), 0 2px 8px rgba(0,0,0,0.8)",
-                }}
-              >
-                {rpm.toLocaleString()}
-              </span>
-              <span
-                className="block text-xs md:text-sm tracking-[0.4em] text-red-800/60 mt-1"
-                style={{ fontFamily: "var(--font-creepster), cursive" }}
-              >
-                RPM
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Orbit domain icons */}

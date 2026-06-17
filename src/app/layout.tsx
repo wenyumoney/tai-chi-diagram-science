@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Creepster } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Serif_SC } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const creepster = Creepster({
-  weight: "400",
-  variable: "--font-creepster",
+const notoSerifSC = Noto_Serif_SC({
+  weight: ["400", "700", "900"],
+  variable: "--font-song",
   subsets: ["latin"],
   display: "swap",
 });
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh" className={`${geistSans.variable} ${geistMono.variable} ${creepster.variable}`}>
+    <html lang="zh" className={`${geistSans.variable} ${geistMono.variable} ${notoSerifSC.variable}`}>
       <body className="font-sans bg-[#09090b] text-zinc-200">{children}</body>
     </html>
   );
