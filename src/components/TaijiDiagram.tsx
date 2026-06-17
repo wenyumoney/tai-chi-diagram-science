@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 
 interface DomainInfo {
   slug: string;
@@ -87,12 +87,35 @@ export default function TaijiDiagram({
   const cycleStartRef = useRef<number>(0);
   const [rpm, setRpm] = useState(0);
 
+  // Narration: changes based on RPM thresholds
+  const narrationZh = useMemo(() => {
+    if (rpm < 500) return "静极生动，阴阳初分";
+    if (rpm < 1500) return "阴消阳长，太极始转";
+    if (rpm < 3000) return "阴阳相推，万物生化";
+    if (rpm < 5000) return "刚柔相摩，八卦相荡";
+    if (rpm < 7000) return "动极而静，静极复动";
+    if (rpm < 9000) return "无往不复，天地际也";
+    return "阴阳合一，道法自然";
+  }, [rpm]);
+
+  const narrationEn = useMemo(() => {
+    if (rpm < 500) return "Stillness breaks — yin and yang emerge";
+    if (rpm < 1500) return "Yang rises, yin recedes — the Taiji turns";
+    if (rpm < 3000) return "Yin and yang entwine — all things arise";
+    if (rpm < 5000) return "Hard and soft grind — the eight trigrams stir";
+    if (rpm < 7000) return "Motion peaks — stillness already begins";
+    if (rpm < 9000) return "No departure without return — the cosmic pulse";
+    return "Yin and yang unite — the Dao unfolds";
+  }, [rpm]);
+
+  const narration = locale === "zh" ? narrationZh : narrationEn;
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let cleanup: (() => void) | undefined;
-    const DURATION = 300; // 5 minutes
-    const MAX_RPM = 5000;
+    const DURATION = 360; // 6 minutes
+    const MAX_RPM = 10000;
 
     cycleStartRef.current = Date.now();
 
@@ -102,7 +125,7 @@ export default function TaijiDiagram({
 
       const ctx = gsap.context(() => {
         const tween = gsap.to(svgRef.current, {
-          rotation: 4_500_000, // total degrees for 0→5000 RPM over 300s
+          rotation: 10_800_000, // total degrees for 0→10000 RPM over 360s
           duration: DURATION,
           repeat: -1,
           ease: "power1.in",
@@ -149,6 +172,16 @@ export default function TaijiDiagram({
         >
           RPM
         </span>
+        {/* Narration — changes with RPM thresholds */}
+        <p
+          className="text-xs md:text-sm text-[#d4a853]/60 mt-3 tracking-wider italic max-w-[320px] leading-relaxed"
+          style={{
+            fontFamily: "var(--font-song), serif",
+            textShadow: "0 0 20px rgba(212,168,83,0.2)",
+          }}
+        >
+          {narration}
+        </p>
       </div>
 
       <div className="relative w-[min(80vw,500px)] h-[min(80vw,500px)]">
