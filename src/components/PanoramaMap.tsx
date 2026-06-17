@@ -233,7 +233,7 @@ export default function PanoramaMap({ nodes, locale }: PanoramaMapProps) {
         const hintY2 = h - 26;
 
         ctx!.fillText(
-          isZh ? "🖱 拖拽探索  ·  滚轮缩放  ·  点击核心节点进入" : "🖱 Drag to explore  ·  Scroll to zoom  ·  Click core nodes to enter",
+          isZh ? "拖拽探索  ·  滚轮缩放  ·  点击金色节点进入详情" : "Drag to pan  ·  Scroll to zoom  ·  Click golden nodes to enter",
           w / 2,
           hintY1
         );
