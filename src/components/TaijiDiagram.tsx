@@ -85,12 +85,9 @@ export default function TaijiDiagram({
   locale,
 }: TaijiDiagramProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const isMobile =
-    typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (isMobile) return;
 
     let cleanup: (() => void) | undefined;
 
@@ -99,11 +96,14 @@ export default function TaijiDiagram({
       if (!svgRef.current) return;
 
       const ctx = gsap.context(() => {
+        // 0 → 2000 RPM over 3 minutes (180s), then restart
+        // Linear acceleration: θ = k·t², at t=180s, θ = 1,080,000°
+        // power1.in (quadratic) = linearly increasing speed
         gsap.to(svgRef.current, {
-          rotation: 360,
-          duration: 120,
+          rotation: 1080000,
+          duration: 180,
           repeat: -1,
-          ease: "none",
+          ease: "power1.in",
         });
       });
 
@@ -113,7 +113,7 @@ export default function TaijiDiagram({
     return () => {
       cleanup?.();
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <div className="relative flex items-center justify-center w-full py-12 select-none">
@@ -124,11 +124,6 @@ export default function TaijiDiagram({
             ref={svgRef}
             viewBox="0 0 200 200"
             className="w-[min(50vw,280px)] h-[min(50vw,280px)] drop-shadow-[0_0_60px_rgba(255,255,255,0.04)]"
-            style={
-              isMobile
-                ? { animation: "spin 120s linear infinite" }
-                : undefined
-            }
           >
             {/* Outer glow ring */}
             <circle cx="100" cy="100" r="99" fill="none" stroke="currentColor"
@@ -153,7 +148,7 @@ export default function TaijiDiagram({
         {/* Orbit domain icons */}
         {domains.map((domain, i) => {
           const angle = (i * 60 - 90) * (Math.PI / 180);
-          const radius = isMobile ? 38 : 44;
+          const radius = 42;
 
           return (
             <button
