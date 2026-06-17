@@ -1,0 +1,35 @@
+{
+  "name": "tai-chi-diagram-science",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check-data": "tsx src/lib/check-data.ts"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "geist": "^1.7.2",
+    "gsap": "^3.15.0",
+    "jsdom": "^29.1.1",
+    "next": "^16.2.9",
+    "next-intl": "^4.13.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.3"
+  }
+}
