@@ -40,72 +40,88 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
   const messages = await getMessages();
   const t = (messages as Record<string, Record<string, string>>).domain;
 
-  // Prev/next
   const prevDomain = domains.find((d) => d.order === domain.order - 1);
   const nextDomain = domains.find((d) => d.order === domain.order + 1);
 
   const l = locale as "zh" | "en";
 
   return (
-    <main className="min-h-[100dvh] pt-14 pb-16">
-      {/* Back link */}
-      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4">
+    <main className="min-h-[100dvh] pb-24">
+      {/* Back link — floating above hero */}
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-6">
         <Link
           href={`/${locale}`}
-          className="text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm transition-colors duration-300 group"
         >
-          ← {t.backToHome}
+          <span className="group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
+          {t.backToHome}
         </Link>
       </div>
 
       {/* Hero visualization */}
       <DomainHeroVisualization slug={slug} locale={locale} />
 
-      {/* Title + tagline */}
-      <div className="max-w-4xl mx-auto px-4 md:px-6 pt-6">
-        <h1
-          className="text-3xl md:text-5xl tracking-tighter leading-none mb-3"
-          style={{ color: domain.color }}
-        >
+      {/* Title + tagline — with double-bezel pill accent */}
+      <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6 pb-2">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium border mb-4"
+          style={{ borderColor: `${domain.color}30`, color: domain.color, backgroundColor: `${domain.color}08` }}>
+          {locale === "zh" ? `领域 0${domain.order}` : `Domain 0${domain.order}`}
+        </div>
+        <h1 className="text-3xl md:text-5xl lg:text-6xl tracking-tighter leading-none mb-4 text-zinc-100">
           {domain.title[l]}
         </h1>
-        <p className="text-lg text-zinc-400">{domain.tagline[l]}</p>
+        <p className="text-base md:text-lg text-zinc-500 max-w-[60ch] leading-relaxed">
+          {domain.tagline[l]}
+        </p>
       </div>
 
-      {/* Content sections */}
-      <article className="max-w-4xl mx-auto px-4 md:px-6 mt-10 space-y-12">
+      {/* Content sections — Double-Bezel containers */}
+      <article className="max-w-5xl mx-auto px-4 md:px-6 mt-12 space-y-10">
         {/* Overview */}
-        <section>
-          <h2
-            className="text-lg font-semibold mb-4 pb-2 border-b border-zinc-800"
-            style={{ borderColor: `${domain.color}40` }}
-          >
-            {t.overview}
-          </h2>
-          <div className="prose prose-invert prose-zinc max-w-none">
-            {domain.overview[l].split("\n\n").map((p, i) => (
-              <p key={i} className="text-zinc-300 leading-relaxed mb-4">
-                {p}
-              </p>
-            ))}
+        <section className="rounded-[2rem] p-[1px] bg-white/[0.03]">
+          <div className="rounded-[calc(2rem-1px)] p-6 md:p-8 bg-[#0c0c0f] border border-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: domain.color }} />
+              <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+                {t.overview}
+              </h2>
+            </div>
+            <div className="space-y-4">
+              {domain.overview[l].split("\n\n").map((p, i) => (
+                <p key={i} className="text-zinc-300 leading-relaxed text-[15px]">
+                  {p}
+                </p>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Taiji Connections */}
+        {/* Taiji Connections — grid with individual Double-Bezel cards */}
         <section>
-          <h2
-            className="text-lg font-semibold mb-4 pb-2 border-b border-zinc-800"
-            style={{ borderColor: `${domain.color}40` }}
-          >
-            {t.taijiConnection}
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: domain.color }} />
+            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+              {t.taijiConnection}
+            </h2>
+          </div>
           <div className="grid gap-3">
             {domain.taijiConnections.map((conn, i) => (
               <div
                 key={i}
-                className="p-4 rounded-xl border border-zinc-800 bg-[#18181b]/30"
+                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500"
               >
-                <p className="text-zinc-200 text-sm">{conn.point[l]}</p>
+                <div className="rounded-[calc(1.5rem-1px)] p-5 bg-[#0c0c0f] border border-white/[0.03]">
+                  <span
+                    className="text-[10px] font-mono font-medium mr-3 opacity-40"
+                    style={{ color: domain.color }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-zinc-200 text-sm inline leading-relaxed">
+                    {conn.point[l]}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -113,84 +129,101 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
 
         {/* Key Examples */}
         <section>
-          <h2
-            className="text-lg font-semibold mb-4 pb-2 border-b border-zinc-800"
-            style={{ borderColor: `${domain.color}40` }}
-          >
-            {t.keyExamples}
-          </h2>
-          <div className="grid gap-4">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: domain.color }} />
+            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+              {t.keyExamples}
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
             {domain.keyExamples.map((ex, i) => (
               <div
                 key={i}
-                className="p-5 rounded-xl border border-zinc-800 bg-[#18181b]/50"
+                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.05] transition-colors duration-500"
               >
-                <h3
-                  className="text-base font-semibold mb-2"
-                  style={{ color: domain.color }}
-                >
-                  {ex.title[l]}
-                </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  {ex.description[l]}
-                </p>
+                <div className="h-full rounded-[calc(1.5rem-1px)] p-5 bg-[#0c0c0f] border border-white/[0.03]">
+                  <h3 className="text-sm font-semibold mb-2 text-zinc-100">
+                    {ex.title[l]}
+                  </h3>
+                  <p className="text-sm text-zinc-500 leading-relaxed">
+                    {ex.description[l]}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Taiji Comparison */}
-        <section>
-          <h2
-            className="text-lg font-semibold mb-4 pb-2 border-b border-zinc-800"
-            style={{ borderColor: `${domain.color}40` }}
-          >
-            {t.visualComparison}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {domain.taijiComparison.map((comp, i) => (
-              <div
-                key={i}
-                className="p-4 rounded-xl border border-zinc-800 bg-[#18181b]/30"
-              >
-                <div
-                  className="text-xs font-semibold mb-2 uppercase tracking-wider"
-                  style={{ color: domain.color }}
-                >
-                  太极
+        {/* Taiji Comparison — side by side with superior visual */}
+        <section className="rounded-[2rem] p-[1px] bg-white/[0.03]">
+          <div className="rounded-[calc(2rem-1px)] p-6 md:p-8 bg-[#0c0c0f] border border-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: domain.color }} />
+              <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+                {t.visualComparison}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {domain.taijiComparison.map((comp, i) => (
+                <div key={i} className="rounded-xl bg-[#0a0a0d] border border-white/[0.04] p-5">
+                  <div className="flex items-center gap-3 mb-3">
+                    {/* Mini Taiji icon */}
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" style={{ color: domain.color }}>
+                      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                      <path d="M12 1a11 11 0 0 0 0 22 5.5 5.5 0 0 1 0-11 5.5 5.5 0 0 0 0-11" fill="currentColor" opacity="0.15" />
+                    </svg>
+                    <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: domain.color }}>
+                      {locale === "zh" ? "太极" : "Taiji"}
+                    </span>
+                  </div>
+                  <p className="text-sm text-zinc-300 leading-relaxed mb-4 pl-8">
+                    {comp.taijiAspect[l]}
+                  </p>
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" style={{ color: domain.color }}>
+                      <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="12" y1="1" x2="12" y2="9" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+                      <line x1="12" y1="15" x2="12" y2="23" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+                      <line x1="1" y1="12" x2="9" y2="12" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+                      <line x1="15" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+                    </svg>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      {locale === "zh" ? "科学" : "Science"}
+                    </span>
+                  </div>
+                  <p className="text-sm text-zinc-400 leading-relaxed pl-8">
+                    {comp.scienceAspect[l]}
+                  </p>
                 </div>
-                <p className="text-sm text-zinc-200 mb-3">
-                  {comp.taijiAspect[l]}
-                </p>
-                <div className="text-xs font-semibold mb-2 uppercase tracking-wider text-zinc-500">
-                  {locale === "zh" ? "科学" : "Science"}
-                </div>
-                <p className="text-sm text-zinc-400">{comp.scienceAspect[l]}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* References */}
         <section>
-          <h2
-            className="text-lg font-semibold mb-4 pb-2 border-b border-zinc-800"
-            style={{ borderColor: `${domain.color}40` }}
-          >
-            {t.references}
-          </h2>
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: domain.color }} />
+            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-400">
+              {t.references}
+            </h2>
+          </div>
           <ol className="space-y-2">
             {domain.references.map((ref, i) => (
-              <li key={i} className="text-sm">
+              <li key={i} className="group flex items-start gap-3">
+                <span className="text-[10px] font-mono text-zinc-600 mt-0.5 shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <a
                   href={ref.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-zinc-200 transition-colors underline underline-offset-2"
+                  className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-300 underline underline-offset-2 decoration-zinc-700 hover:decoration-zinc-500"
                 >
                   {ref.title}
                 </a>
-                <span className="text-zinc-600 ml-2 text-xs">
+                <span className="text-[10px] text-zinc-600 font-mono shrink-0 mt-0.5">
                   [{ref.type}]
                 </span>
               </li>
@@ -199,40 +232,48 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
         </section>
       </article>
 
-      {/* Bottom navigation */}
-      <nav className="max-w-4xl mx-auto px-4 md:px-6 mt-16 flex justify-between">
-        {prevDomain ? (
-          <Link
-            href={`/${locale}/domain/${prevDomain.slug}`}
-            className="text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
-          >
-            {t.previousDomain}
-          </Link>
-        ) : (
-          <span className="text-zinc-700 text-sm" aria-disabled="true">
-            {t.previousDomain}
-          </span>
-        )}
+      {/* Bottom navigation — floating pill style */}
+      <nav className="max-w-5xl mx-auto px-4 md:px-6 mt-20">
+        <div className="flex items-center justify-between rounded-full p-[1px] bg-white/[0.03]">
+          <div className="flex items-center justify-between w-full rounded-full px-6 py-4 bg-[#0c0c0f] border border-white/[0.03]">
+            {prevDomain ? (
+              <Link
+                href={`/${locale}/domain/${prevDomain.slug}`}
+                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300"
+              >
+                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                <span className="hidden sm:inline">{prevDomain.title[l]}</span>
+                <span className="sm:hidden">{t.previousDomain}</span>
+              </Link>
+            ) : (
+              <span className="text-zinc-700 text-sm" aria-disabled="true">
+                {t.previousDomain}
+              </span>
+            )}
 
-        <Link
-          href={`/${locale}/panorama`}
-          className="text-zinc-500 hover:text-zinc-300 text-sm transition-colors"
-        >
-          {t.viewPanorama}
-        </Link>
+            <Link
+              href={`/${locale}/panorama`}
+              className="text-zinc-600 hover:text-zinc-400 text-sm transition-colors duration-300"
+            >
+              {t.viewPanorama}
+            </Link>
 
-        {nextDomain ? (
-          <Link
-            href={`/${locale}/domain/${nextDomain.slug}`}
-            className="text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
-          >
-            {t.nextDomain}
-          </Link>
-        ) : (
-          <span className="text-zinc-700 text-sm" aria-disabled="true">
-            {t.nextDomain}
-          </span>
-        )}
+            {nextDomain ? (
+              <Link
+                href={`/${locale}/domain/${nextDomain.slug}`}
+                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300"
+              >
+                <span className="hidden sm:inline">{nextDomain.title[l]}</span>
+                <span className="sm:hidden">{t.nextDomain}</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </Link>
+            ) : (
+              <span className="text-zinc-700 text-sm" aria-disabled="true">
+                {t.nextDomain}
+              </span>
+            )}
+          </div>
+        </div>
       </nav>
     </main>
   );

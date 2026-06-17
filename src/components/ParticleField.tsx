@@ -14,10 +14,8 @@ export default function ParticleField() {
     const wrapper = wrapperRef.current;
     if (!canvas || !wrapper) return;
 
-    // Detect mobile
     const isMobile = window.innerWidth < 768;
 
-    // Handle resize
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const { width, height } = entry.contentRect;
@@ -27,16 +25,13 @@ export default function ParticleField() {
     });
     resizeObserver.observe(wrapper);
 
-    // Set initial size
     const rect = wrapper.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
 
-    // Create and start particle system
     const system = createParticleSystem(canvas, isMobile);
     system.start();
 
-    // Mouse tracking (throttled by rAF)
     const handleMouseMove = (e: MouseEvent) => {
       if (rafRef.current) return;
       rafRef.current = requestAnimationFrame(() => {
@@ -58,7 +53,6 @@ export default function ParticleField() {
     wrapper.addEventListener("mousemove", handleMouseMove);
     wrapper.addEventListener("mouseleave", handleMouseLeave);
 
-    // Cleanup
     return () => {
       system.stop();
       resizeObserver.disconnect();
@@ -71,7 +65,32 @@ export default function ParticleField() {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="fixed inset-0 z-0">
+    <div ref={wrapperRef} className="fixed inset-0 z-0 overflow-hidden">
+      {/* Mesh gradient orbs — Ethereal Glass ambient glow */}
+      <div
+        className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full blur-[120px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%)",
+          animation: "orb-drift-1 30s ease-in-out infinite alternate",
+        }}
+      />
+      <div
+        className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[120px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(245,158,11,0.03) 0%, transparent 70%)",
+          animation: "orb-drift-2 40s ease-in-out infinite alternate",
+        }}
+      />
+      <div
+        className="absolute top-[30%] left-[40%] w-[40%] h-[40%] rounded-full blur-[100px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(99,102,241,0.03) 0%, transparent 70%)",
+          animation: "orb-drift-3 35s ease-in-out infinite alternate",
+        }}
+      />
       <canvas
         ref={canvasRef}
         className="w-full h-full"

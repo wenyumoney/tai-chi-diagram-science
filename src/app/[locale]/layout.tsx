@@ -66,7 +66,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ParticleField />
       <NavBar />
-      <main className="relative z-10 pt-14">{children}</main>
+      <main className="relative z-10 pt-20">{children}</main>
       <Footer />
     </NextIntlClientProvider>
   );
