@@ -9,6 +9,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "prebuild": "npm run check-data",
     "check-data": "tsx src/lib/check-data-cli.ts"
   },
   "dependencies": {

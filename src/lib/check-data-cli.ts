@@ -5,7 +5,6 @@ async function main() {
 
   // Validate domains
   try {
-    // @ts-expect-error - domains.ts created in Task 6
     const { domains } = await import("../data/domains");
     validateDomains(domains);
     console.log("✓ domains.ts passed validation");
@@ -24,7 +23,6 @@ async function main() {
 
   // Validate panorama nodes
   try {
-    // @ts-expect-error - panorama-domains.ts created in Task 6
     const { panoramaNodes } = await import("../data/panorama-domains");
     validatePanoramaNodes(panoramaNodes);
     console.log("✓ panorama-domains.ts passed validation");
