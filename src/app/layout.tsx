@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     alternateLocale: "zh",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Taiji Diagram × Modern Science — 3D Universe Map Preview",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Taiji Diagram × Modern Science",
     description:
       "An interactive 3D map connecting the ancient Yin-Yang diagram to 11 modern scientific fields. Bilingual, open-source, and built with Next.js + Three.js.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
