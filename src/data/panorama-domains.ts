@@ -84,7 +84,8 @@ export const panoramaNodes: PanoramaNode[] = [
     },
     category: "physics",
     connections: ["core-quantum", "core-symmetry", "ext-geology"],
-    isCore: false,
+    isCore: true,
+    coreSlug: "cosmology",
   },
   {
     id: "ext-biology",
@@ -95,7 +96,8 @@ export const panoramaNodes: PanoramaNode[] = [
     },
     category: "biology",
     connections: ["core-chaos", "core-systems", "ext-medicine", "ext-genetics"],
-    isCore: false,
+    isCore: true,
+    coreSlug: "biology",
   },
   {
     id: "ext-neuroscience",
@@ -117,7 +119,8 @@ export const panoramaNodes: PanoramaNode[] = [
     },
     category: "psychology",
     connections: ["ext-neuroscience", "ext-art"],
-    isCore: false,
+    isCore: true,
+    coreSlug: "psychology",
   },
   {
     id: "ext-economics",
@@ -150,7 +153,8 @@ export const panoramaNodes: PanoramaNode[] = [
     },
     category: "computer-science",
     connections: ["core-math", "core-info", "ext-neuroscience"],
-    isCore: false,
+    isCore: true,
+    coreSlug: "artificial-intelligence",
   },
   {
     id: "ext-genetics",
@@ -239,5 +243,17 @@ export const panoramaNodes: PanoramaNode[] = [
     category: "medicine",
     connections: ["ext-biology", "ext-genetics", "core-systems"],
     isCore: false,
+  },
+  {
+    id: "ext-computer-science",
+    name: { zh: "计算机科学与逻辑", en: "Computer Science & Logic" },
+    description: {
+      zh: "布尔代数 → 德·摩根定律 → P vs NP — 计算的本质是阴阳互化与不对称性",
+      en: "Boolean algebra → De Morgan's laws → P vs NP — the essence of computation is yin-yang transformation and asymmetry",
+    },
+    category: "computer-science",
+    connections: ["core-math", "core-info", "ext-cs"],
+    isCore: true,
+    coreSlug: "computer-science",
   },
 ];

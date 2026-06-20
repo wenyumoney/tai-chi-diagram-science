@@ -33,5 +33,57 @@
     "title": "Page Not Found",
     "description": "The domain you're exploring has not yet been discovered.",
     "backToHome": "Back to Home"
+  },
+  "footer": {
+    "brandTagline": "Taiji Diagram × Modern Science",
+    "brandDescription": "Exploring the scientific resonance of Yin-Yang philosophy across quantum physics, systems science, information theory and other frontiers. A dialogue bridging ancient wisdom and modern inquiry.",
+    "navLabel": "Navigation",
+    "home": "Home",
+    "panorama": "Panorama Map",
+    "github": "GitHub",
+    "quoteLabel": "Quote",
+    "quote": "One yin and one yang — this is called the Dao. What inherits it is goodness; what completes it is nature.",
+    "quoteAttribution": "— Yijing · Xici",
+    "copyright": "© 2026 Taiji Diagram × Modern Science",
+    "bottomText": "Yin-Yang Philosophy, Scientific Interpretation"
+  },
+  "intro": {
+    "sectionTitle": "What is the Taiji Diagram?",
+    "col1Title": "A Circle Divided",
+    "col1Body": "The Taiji diagram (太极图, \"yīn-yáng symbol\") is one of the world's oldest visual metaphors. A circle split by an S-shaped curve into black and white halves — each containing a dot of the opposite color — captures the idea that opposites are not enemies but partners in a dynamic, ever-turning dance.",
+    "col2Title": "Yin and Yang",
+    "col2Body": "Yin (black) represents receptivity, stillness, and the hidden; Yang (white) represents activity, expression, and the visible. But neither can exist without the other — night defines day, rest enables action, and every peak contains the seed of its own reversal. This is not mysticism: it is a model of polarity and mutual dependence.",
+    "col3Title": "A Lens for Science",
+    "col3Body": "Here, we test a bold hypothesis: that these ancient patterns — duality, complementarity, emergence from opposition — show up across modern science in surprising ways. From quantum particles to neural networks, the Taiji diagram offers a unifying visual language for understanding how complexity arises from simple, balanced principles."
+  },
+  "readingPath": {
+    "suggestedPath": "Suggested reading order",
+    "continueReading": "Continue Reading →",
+    "visited": "Visited",
+    "resumeFrom": "Resume from"
+  },
+  "quiz": {
+    "sectionTitle": "Knowledge Quiz",
+    "questions": "questions",
+    "scoreSummary": "You scored {correct} out of {total}",
+    "retry": "Retry",
+    "previousScore": "Previous score",
+    "cumulativeTitle": "Cumulative Quiz",
+    "cumulativeDescription": "One question from each domain — test your understanding of Taiji principles across all scientific fields.",
+    "startOver": "Start Over",
+    "overallScore": "Overall score",
+    "correctOutOf": "Correct",
+    "takeCumulative": "Take the Full Quiz →"
+  },
+  "tour": {
+    "startTour": "Start Guided Tour",
+    "exitTour": "Exit Tour",
+    "stepOf": "Step {current} of {total}",
+    "stepMath": "Taiji Math & Bagua — The binary foundations of yin-yang mapping to 3-bit arithmetic, discovered by Leibniz in 1701.",
+    "stepQuantum": "Quantum Entanglement — Paired particles mirroring yin-yang mutual dependence across any distance.",
+    "stepSymmetry": "Symmetry Breaking — How the universe's fundamental forces emerged from an undifferentiated state, like yin-yang from Wuji.",
+    "stepInfo": "Information Theory — Entropy as a measure of uncertainty, eliminating chaos to reveal structure — pure yang emerging from yin.",
+    "stepChaos": "Chaos & Fractals — Order hiding within apparent randomness, infinite self-similarity — the Taiji within the Taiji.",
+    "stepSystems": "Systems Science — Emergence: how simple yin-yang rules at the micro level self-organize into macroscopic complexity."
   }
 }

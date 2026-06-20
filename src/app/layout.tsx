@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh" className={`${geistSans.variable} ${geistMono.variable} ${notoSerifSC.variable}`}>
+    <html lang="zh" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} ${notoSerifSC.variable}`}>
       <body className="font-sans bg-[#09090b] text-zinc-200">{children}</body>
     </html>
   );

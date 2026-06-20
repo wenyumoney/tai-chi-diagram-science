@@ -19,9 +19,9 @@ export default async function PanoramaPage({
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm transition-colors duration-300 group"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group"
         >
-          <span className="group-hover:-translate-x-0.5 transition-transform duration-300">
+          <span className="group-hover:-translate-x-0.5 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">
             ←
           </span>
           {t.backToHome}
@@ -30,7 +30,7 @@ export default async function PanoramaPage({
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
-        <div className="inline-flex items-center rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium border border-[#d4a853]/30 text-[#d4a853] bg-[#d4a853]/[0.06] mb-5">
+        <div className="inline-flex items-center rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium border border-sky-400/30 text-sky-400 bg-sky-400/[0.06] mb-5">
           {isZh ? "全景地图" : "Panorama Map"}
         </div>
         <h1 className="text-3xl md:text-5xl lg:text-6xl tracking-tighter leading-none text-zinc-100 mb-4">
@@ -41,11 +41,11 @@ export default async function PanoramaPage({
         </p>
 
         {/* Purpose card — explains the "why" */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-3xl mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_0.8fr] gap-3 max-w-3xl mt-6">
           <div className="rounded-2xl p-[1px] bg-white/[0.03]">
             <div className="h-full rounded-[calc(1.5rem-1px)] p-4 bg-[#0c0c0f] border border-white/[0.03]">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-5 h-5 rounded-full bg-[#d4a853]/10 flex items-center justify-center text-[10px] text-[#d4a853] font-bold">
+                <span className="w-5 h-5 rounded-full bg-sky-400/10 flex items-center justify-center text-[10px] text-sky-400 font-bold">
                   1
                 </span>
                 <span className="text-xs font-semibold text-zinc-300">
@@ -62,7 +62,7 @@ export default async function PanoramaPage({
           <div className="rounded-2xl p-[1px] bg-white/[0.03]">
             <div className="h-full rounded-[calc(1.5rem-1px)] p-4 bg-[#0c0c0f] border border-white/[0.03]">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-5 h-5 rounded-full bg-[#d4a853]/10 flex items-center justify-center text-[10px] text-[#d4a853] font-bold">
+                <span className="w-5 h-5 rounded-full bg-sky-400/10 flex items-center justify-center text-[10px] text-sky-400 font-bold">
                   2
                 </span>
                 <span className="text-xs font-semibold text-zinc-300">
@@ -79,7 +79,7 @@ export default async function PanoramaPage({
           <div className="rounded-2xl p-[1px] bg-white/[0.03]">
             <div className="h-full rounded-[calc(1.5rem-1px)] p-4 bg-[#0c0c0f] border border-white/[0.03]">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-5 h-5 rounded-full bg-[#d4a853]/10 flex items-center justify-center text-[10px] text-[#d4a853] font-bold">
+                <span className="w-5 h-5 rounded-full bg-sky-400/10 flex items-center justify-center text-[10px] text-sky-400 font-bold">
                   3
                 </span>
                 <span className="text-xs font-semibold text-zinc-300">
@@ -101,7 +101,7 @@ export default async function PanoramaPage({
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-5 mb-4 px-2">
           <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] font-medium text-zinc-500">
-            <span className="w-2 h-2 rounded-full bg-[#d4a853]" />
+            <span className="w-2 h-2 rounded-full bg-sky-400" />
             {t.coreDomains}
           </span>
           <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] font-medium text-zinc-600">

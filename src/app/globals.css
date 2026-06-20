@@ -68,3 +68,51 @@ html {
 .animate-fade-up-stagger-reveal > *:nth-child(6) { animation-delay: calc(var(--stagger-delay, 80ms) * 5); }
 .animate-fade-up-stagger-reveal > *:nth-child(7) { animation-delay: calc(var(--stagger-delay, 80ms) * 6); }
 .animate-fade-up-stagger-reveal > *:nth-child(8) { animation-delay: calc(var(--stagger-delay, 80ms) * 7); }
+
+/* Particle drift — sparks from Taiji edge at high RPM */
+@keyframes particle-drift {
+  0% {
+    opacity: 0.9;
+    transform: rotate(var(--a, 0deg)) translateY(-140px) scale(1);
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--a, 0deg)) translateY(-220px) scale(0.3);
+  }
+}
+.animate-particle-drift {
+  animation: particle-drift 1.5s ease-out infinite;
+}
+
+/* RPM narration fade transition */
+@keyframes rpm-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rpm-fade {
+  animation: rpm-fade 0.5s ease-out forwards;
+}
+
+/* Domain card floating animation */
+@keyframes domain-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Gloss sweep on card hover */
+.card-gloss {
+  transform: translateX(-100%);
+  transition: transform 0.7s cubic-bezier(0.32,0.72,0,1);
+}
+.group:hover .card-gloss {
+  transform: translateX(200%);
+}

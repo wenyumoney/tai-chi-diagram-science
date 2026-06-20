@@ -5,6 +5,9 @@ import { getMessages } from "next-intl/server";
 import { domains } from "@/data/domains";
 import { getDomainBySlug } from "@/data/types";
 import DomainHeroVisualization from "@/components/DomainHeroVisualization";
+import DomainComparisonVisuals from "@/components/DomainComparisonVisuals";
+import QuizSection from "@/components/QuizSection";
+import DomainTracker from "@/components/DomainTracker";
 
 interface DetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -47,13 +50,14 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
 
   return (
     <main className="min-h-[100dvh] pb-24">
+      <DomainTracker slug={slug} />
       {/* Back link — floating above hero */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 py-6">
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm transition-colors duration-300 group"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group"
         >
-          <span className="group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
+          <span className="group-hover:-translate-x-0.5 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">←</span>
           {t.backToHome}
         </Link>
       </div>
@@ -109,7 +113,7 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
             {domain.taijiConnections.map((conn, i) => (
               <div
                 key={i}
-                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500"
+                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
               >
                 <div className="rounded-[calc(1.5rem-1px)] p-5 bg-[#0c0c0f] border border-white/[0.03]">
                   <span
@@ -139,7 +143,7 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
             {domain.keyExamples.map((ex, i) => (
               <div
                 key={i}
-                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.05] transition-colors duration-500"
+                className="rounded-2xl p-[1px] bg-white/[0.02] hover:bg-white/[0.05] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
               >
                 <div className="h-full rounded-[calc(1.5rem-1px)] p-5 bg-[#0c0c0f] border border-white/[0.03]">
                   <h3 className="text-sm font-semibold mb-2 text-zinc-100">
@@ -201,6 +205,16 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
           </div>
         </section>
 
+        {/* Interactive Visual Comparison */}
+        <section className="max-w-5xl mx-auto px-4 md:px-6">
+          <DomainComparisonVisuals slug={slug} locale={locale} />
+        </section>
+
+        {/* Knowledge Quiz */}
+        <section className="mt-16">
+          <QuizSection slug={slug} locale={locale} />
+        </section>
+
         {/* References */}
         <section>
           <div className="flex items-center gap-3 mb-5">
@@ -219,7 +233,7 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
                   href={ref.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-300 underline underline-offset-2 decoration-zinc-700 hover:decoration-zinc-500"
+                  className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] underline underline-offset-2 decoration-zinc-700 hover:decoration-zinc-500"
                 >
                   {ref.title}
                 </a>
@@ -239,9 +253,9 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
             {prevDomain ? (
               <Link
                 href={`/${locale}/domain/${prevDomain.slug}`}
-                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300"
+                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97]"
               >
-                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                <span className="group-hover:-translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">←</span>
                 <span className="hidden sm:inline">{prevDomain.title[l]}</span>
                 <span className="sm:hidden">{t.previousDomain}</span>
               </Link>
@@ -253,7 +267,7 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
 
             <Link
               href={`/${locale}/panorama`}
-              className="text-zinc-600 hover:text-zinc-400 text-sm transition-colors duration-300"
+              className="text-zinc-600 hover:text-zinc-400 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97]"
             >
               {t.viewPanorama}
             </Link>
@@ -261,11 +275,11 @@ export default async function DomainDetailPage({ params }: DetailPageProps) {
             {nextDomain ? (
               <Link
                 href={`/${locale}/domain/${nextDomain.slug}`}
-                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300"
+                className="group flex items-center gap-2 text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97]"
               >
                 <span className="hidden sm:inline">{nextDomain.title[l]}</span>
                 <span className="sm:hidden">{t.nextDomain}</span>
-                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">→</span>
               </Link>
             ) : (
               <span className="text-zinc-700 text-sm" aria-disabled="true">

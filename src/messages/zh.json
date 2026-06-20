@@ -33,5 +33,57 @@
     "title": "页面未找到",
     "description": "你探索的领域尚未被发现。",
     "backToHome": "返回首页"
+  },
+  "footer": {
+    "brandTagline": "太极图 × 现代科学",
+    "brandDescription": "探索阴阳哲学在量子物理、系统科学、信息论等前沿领域的科学映射。跨越古今的思想对话。",
+    "navLabel": "导航",
+    "home": "首页",
+    "panorama": "全景地图",
+    "github": "GitHub",
+    "quoteLabel": "名言",
+    "quote": "一阴一阳之谓道，继之者善也，成之者性也。",
+    "quoteAttribution": "— 《周易·系辞》",
+    "copyright": "© 2026 太极图 × 现代科学",
+    "bottomText": "阴阳哲学，科学解读"
+  },
+  "intro": {
+    "sectionTitle": "什么是太极图？",
+    "col1Title": "一个被分割的圆",
+    "col1Body": "太极图是世界上古老的视觉隐喻之一。一个被 S 形曲线分为黑白两半的圆——每一半中各含一个异色圆点——表达了这样一个观念：对立面不是敌人，而是一场永恒旋转之舞中的伙伴。",
+    "col2Title": "阴与阳",
+    "col2Body": "阴（黑）代表接纳、静止与潜藏；阳（白）代表行动、表达与显现。但二者互相依存——黑夜定义白昼，休息成就行动，每个顶点都蕴含反转的种子。这不是玄学，而是一种关于极性对立与互为依存的思想模型。",
+    "col3Title": "科学之镜",
+    "col3Body": "在这里，我们检验一个大胆的假设：这些古老的模式——二元性、互补性、对立中涌现的统一——在现代科学中反复出现。从量子粒子到神经网络，太极图提供了一种统一的视觉语言，帮助理解复杂的平衡原理如何衍生出万物的秩序。"
+  },
+  "readingPath": {
+    "suggestedPath": "建议阅读顺序",
+    "continueReading": "继续阅读 →",
+    "visited": "已读",
+    "resumeFrom": "继续从"
+  },
+  "quiz": {
+    "sectionTitle": "知识测验",
+    "questions": "题",
+    "scoreSummary": "得分：{correct} / {total}",
+    "retry": "重试",
+    "previousScore": "上次得分",
+    "cumulativeTitle": "综合测验",
+    "cumulativeDescription": "每个领域随机抽取一题——检验你对太极原理在各科学领域应用的全面理解。",
+    "startOver": "重新开始",
+    "overallScore": "总得分",
+    "correctOutOf": "正确",
+    "takeCumulative": "参加综合测验 →"
+  },
+  "tour": {
+    "startTour": "开始导览",
+    "exitTour": "退出导览",
+    "stepOf": "第 {current} 步，共 {total} 步",
+    "stepMath": "太极八卦与数学——阴阳二元的二进制基础，1701年莱布尼茨由此发现六十四卦与0-63的精确对应。",
+    "stepQuantum": "量子纠缠——配对粒子无论距离多远都保持关联，恰如阴中有阳、阳中有阴的相互依存。",
+    "stepSymmetry": "对称性破缺——宇宙基本力如何从未分化的对称态中涌现，正如阴阳从无极中分化。",
+    "stepInfo": "信息论——熵作为不确定性的量度，消除混沌以揭示结构，纯阳从阴中显现。",
+    "stepChaos": "混沌与分形——表面随机中的隐藏秩序，无限的自我相似——太极之中还有太极。",
+    "stepSystems": "系统科学——涌现：微观层面的简单阴阳规则如何自组织成宏观的复杂性与秩序。"
   }
 }

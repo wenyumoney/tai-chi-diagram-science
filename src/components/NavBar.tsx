@@ -20,7 +20,7 @@ export default function NavBar() {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="px-4 py-1.5 text-zinc-200 font-semibold tracking-tight text-sm hover:text-white transition-colors duration-300"
+            className="px-4 py-1.5 text-zinc-200 font-semibold tracking-tight text-sm hover:text-white transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
           >
             {th("siteTitle")}
           </Link>
@@ -29,7 +29,7 @@ export default function NavBar() {
           <div className="hidden md:flex items-center gap-1">
             <Link
               href={`/${locale}/panorama`}
-              className="px-4 py-1.5 text-zinc-400 hover:text-zinc-200 text-sm transition-colors duration-300 rounded-full hover:bg-white/[0.04]"
+              className="px-4 py-1.5 text-zinc-400 hover:text-zinc-200 text-sm transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] rounded-full hover:bg-white/[0.04]"
             >
               {t("panorama")}
             </Link>
@@ -39,7 +39,7 @@ export default function NavBar() {
 
           {/* Hamburger — mobile */}
           <button
-            className="md:hidden relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/[0.06] transition-colors"
+            className="md:hidden relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/[0.06] transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
           >

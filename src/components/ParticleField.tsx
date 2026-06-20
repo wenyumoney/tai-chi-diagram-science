@@ -72,7 +72,7 @@ export default function ParticleField() {
         style={{
           background:
             "radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%)",
-          animation: "orb-drift-1 30s ease-in-out infinite alternate",
+          animation: "orb-drift-1 30s linear infinite alternate",
         }}
       />
       <div
@@ -80,15 +80,15 @@ export default function ParticleField() {
         style={{
           background:
             "radial-gradient(circle, rgba(245,158,11,0.03) 0%, transparent 70%)",
-          animation: "orb-drift-2 40s ease-in-out infinite alternate",
+          animation: "orb-drift-2 40s linear infinite alternate",
         }}
       />
       <div
-        className="absolute top-[30%] left-[40%] w-[40%] h-[40%] rounded-full blur-[100px] pointer-events-none"
+        className="absolute top-[30%] left-[40%] w-[40%] h-[40%] rounded-full blur-[120px] pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(99,102,241,0.03) 0%, transparent 70%)",
-          animation: "orb-drift-3 35s ease-in-out infinite alternate",
+          animation: "orb-drift-3 35s linear infinite alternate",
         }}
       />
       <canvas

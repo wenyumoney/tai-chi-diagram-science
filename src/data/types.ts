@@ -37,6 +37,7 @@ export interface PanoramaNode {
   category: string;
   x?: number;
   y?: number;
+  z?: number;
   connections: string[];
   isCore: boolean;
   coreSlug?: string;
